@@ -9,20 +9,13 @@ environment:
       PLATFORM: "x86"
 
 build_script:
-  - wget -q https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2020-05-19/gtk3-runtime-3.24.18-2020-05-19-ts-win64.exe
-  - gtk3-runtime-3.24.18-2020-05-19-ts-win64.exe /S
   - git clone https://github.com/wingtk/gvsbuild.git
   - cd gvsbuild
-  - git checkout b58d47770ba61b570fe39ab9f413d21a9de81251
+  - git checkout 134e34c96d84000aa65499d08a25969ad0dc4dcb
   - "%PYTHON% build.py build --archives-download-dir=%DOWNLOAD_DIR% --platform=%PLATFORM% --vs-ver=%VS_VER% gtk3 hicolor-icon-theme  adwaita-icon-theme"
-  - xcopy "C:\Program Files\GTK3-Runtime Win64\share\icons\*.*" "C:\gtk-build\gtk\Win32\release\share\icons" /sy
   - cd .. && tar.exe -zcf gtk3-vs%VS_VER%-%PLATFORM%.tar.gz -C C:\gtk-build\gtk\Win32 release
 
 artifacts:
   - path: gtk3-vs%VS_VER%-%PLATFORM%.tar.gz
-
-cache:
-  - C:\gvs-download
-  - C:\gtk-build\tools
 
 test: off
