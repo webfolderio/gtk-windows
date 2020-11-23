@@ -11,7 +11,7 @@ environment:
 build_script:
   - git clone https://github.com/wingtk/gvsbuild.git
   - cd gvsbuild
-  - git checkout 134e34c96d84000aa65499d08a25969ad0dc4dcb
+  - git checkout 874592711b610b6f340f3453e414168acf999476
   - "%PYTHON% build.py build --archives-download-dir=%DOWNLOAD_DIR% --platform=%PLATFORM% --vs-ver=%VS_VER% gtk3 hicolor-icon-theme  adwaita-icon-theme"
   - cd .. && tar.exe -zcf gtk3-vs%VS_VER%-%PLATFORM%.tar.gz -C C:\gtk-build\gtk\Win32 release
 
